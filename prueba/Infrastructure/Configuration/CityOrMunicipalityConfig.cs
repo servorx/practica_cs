@@ -12,25 +12,23 @@ public class CityOrMunicipalityConfig : IEntityTypeConfiguration<CityOrMunicipal
 
         // Clave primaria
         builder.HasKey(c => c.Code);
-
         builder.Property(c => c.Code)
-            .HasColumnName("code");
-
-        // Propiedades
-        builder.Property(c => c.Code)
+            .HasColumnType("VARCHAR")
             .HasColumnName("code")
             .HasMaxLength(6)
-            .IsRequired(true);
+            .IsRequired();
 
         builder.Property(c => c.Name)
             .HasColumnName("name")
-            .HasMaxLength(60)
-            .IsRequired();
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(60);
+        builder.HasIndex(c => c.Name)
+            .IsUnique();
 
         builder.Property(c => c.StateRegId)
             .HasColumnName("state_reg_id")
-            .HasMaxLength(6)
-            .IsRequired();
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(6);
 
         // Relaciones
         builder.HasOne(c => c.StateOrRegion)

@@ -16,26 +16,26 @@ public class PollConfiguration : IEntityTypeConfiguration<Poll>
 
         builder.Property(p => p.Id)
             .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+            .HasColumnType("SERIAL")
+            .IsRequired();
 
         builder.Property(p => p.Name)
             .HasColumnName("name")
-            .HasMaxLength(80) 
-            .IsRequired();
+            .HasMaxLength(80);
+        builder.HasIndex(p => p.Name)
+            .IsUnique();
 
         builder.Property(p => p.Description)
             .HasColumnName("description")
-            .HasMaxLength(255);
+            .HasColumnType("TEXT");
 
         builder.Property(p => p.IsActive)
             .HasColumnName("is_active")
-            .HasColumnType("BOOLEAN") 
-            .IsRequired();
+            .HasColumnType("BOOLEAN");
 
         builder.Property(p => p.CategoryPollId)
             .HasColumnName("categorypoll_id")
-            .HasColumnType("INT") 
-            .IsRequired();
+            .HasColumnType("INT");
 
         // Relaciones
         builder.HasOne(p => p.CategoryPoll)

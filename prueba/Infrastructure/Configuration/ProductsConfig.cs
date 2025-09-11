@@ -15,17 +15,20 @@ namespace Infrastructure.Configurations
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Id)
                 .HasColumnName("id")
-                .HasColumnType("INT")
-                .ValueGeneratedOnAdd();
+                .HasColumnType("SERIAL")
+                .IsRequired();
             // Columnas
             builder.Property(p => p.Name)
                 .HasColumnName("name")
                 .HasColumnType("VARCHAR")
-                .HasMaxLength(60);
+                .HasMaxLength(80);
+            builder.HasIndex(p => p.Name)
+                .IsUnique();
 
             builder.Property(p => p.Detail)
-                .HasColumnName("detail")
-                .HasColumnType("TEXT");
+                .HasColumnName("city_id")
+                .HasColumnType("TEXT")
+                .HasMaxLength(6);
 
             builder.Property(p => p.Price)
                 .HasColumnName("price")
@@ -35,23 +38,12 @@ namespace Infrastructure.Configurations
                 .HasColumnName("typeproduct_id")
                 .HasColumnType("INT");
 
-            builder.Property(p => p.CategoryId)
-                .HasColumnName("category_id")
-                .HasColumnType("INT")
-                .IsRequired();
-
             builder.Property(p => p.Image)
                 .HasColumnName("image")
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(80);
 
             // Relaciones
-            builder.HasOne(p => p.Category)
-                .WithMany(c => c.Products)
-                .HasForeignKey(p => p.CategoryId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-
             builder.HasOne(p => p.TypeProduct)
                 .WithOne(tp => tp.Product)
                 .HasForeignKey<Product>(p => p.TypeProductId);

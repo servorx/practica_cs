@@ -13,37 +13,43 @@ public class CompanyConfig : IEntityTypeConfiguration<Company>
 
         // Clave primaria
         builder.HasKey(c => c.Id);
-
         builder.Property(c => c.Id)
             .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+            .HasColumnType("SERIAL")
+            .IsRequired();
 
         // Propiedades
         builder.Property(c => c.Name)
             .HasColumnName("name")
-            .HasMaxLength(80)
-            .IsRequired(true);
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(80);
 
         builder.Property(c => c.CategoryId)
             .HasColumnName("category_id")
-            .IsRequired(true);
+            .HasColumnType("INT");
 
         builder.Property(c => c.CityId)
             .HasColumnName("city_id")
-            .IsRequired(true);
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(6);
 
         builder.Property(c => c.AudienceId)
             .HasColumnName("audience_id")
-            .IsRequired(true);
+            .HasColumnType("INT");
 
         builder.Property(c => c.Cellphone)
             .HasColumnName("cellphone")
+            .HasColumnType("VARCHAR")
             .HasMaxLength(15);
+        builder.HasIndex(c => c.Cellphone)
+            .IsUnique();
 
         builder.Property(c => c.Email)
             .HasColumnName("email")
-            .HasMaxLength(80)
-            .IsRequired(false);
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(80);
+        builder.HasIndex(c => c.Email)
+            .IsUnique();
 
         // Relaciones
         builder.HasOne(c => c.Category)

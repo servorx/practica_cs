@@ -15,12 +15,17 @@ namespace Infrastructure.Configurations
             builder.HasKey(cp => cp.Id);
 
             builder.Property(cp => cp.Id)
-                .HasColumnName("id");
+                .HasColumnName("id")
+                .HasColumnType("SERIAL")
+                .IsRequired();
 
             // Propiedades
             builder.Property(cp => cp.Name)
                 .HasColumnName("name")
+                .HasColumnType("VARCHAR")
                 .HasMaxLength(80);
+            builder.HasIndex(cp => cp.Name)
+                .IsUnique();
 
             // Relaciones
             builder.HasMany(cp => cp.Polls)

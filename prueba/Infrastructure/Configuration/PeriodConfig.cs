@@ -13,16 +13,19 @@ public class PeriodConfiguration : IEntityTypeConfiguration<Period>
 
         // Clave primaria
         builder.HasKey(p => p.Id);
-
         builder.Property(p => p.Id)
             .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+            .HasColumnType("SERIAL")
+            .IsRequired();
 
         // Columnas
         builder.Property(p => p.Name)
             .HasColumnName("name")
+            .HasColumnType("VARCHAR")
             .HasMaxLength(50)
             .IsRequired();
+        builder.HasIndex(p => p.Name)
+            .IsUnique();
 
         // Relaciones
         builder.HasMany(p => p.MembershipPeriods)

@@ -1,7 +1,7 @@
 using System.Net.Security;
 namespace Domain.Entities;
 
-public class QualityProduct : BaseEntity<int>
+public class QualityProduct
 {
     public int? ProductId { get; set; } = default!;
     public int? CustomerId { get; set; } = default!;

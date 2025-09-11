@@ -12,14 +12,9 @@ public class RateConfiguration : IEntityTypeConfiguration<Rate>
         builder.ToTable("rates");
 
         // Clave primaria compuesta
-        builder.HasKey(r => new { r.Id, r.CustomerId, r.CompanyId, r.PollId });
+        builder.HasKey(r => new {r.CustomerId, r.CompanyId, r.PollId });
 
         // Columnas
-        builder.Property(r => r.Id)
-            .HasColumnName("id")
-            .HasColumnType("INT")
-            .ValueGeneratedOnAdd();
-
         builder.Property(r => r.CustomerId)
             .HasColumnName("customer_id")
             .HasColumnType("INT");

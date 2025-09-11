@@ -16,15 +16,18 @@ public class DetailFavoriteConfiguration : IEntityTypeConfiguration<DetailFavori
 
         builder.Property(df => df.Id)
             .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+            .HasColumnType("INTEGER")
+            .IsRequired();
 
         // Columnas
         builder.Property(df => df.FavoriteId)
             .HasColumnName("favorite_id")
+            .HasColumnType("INT")
             .IsRequired();
 
         builder.Property(df => df.ProductId)
             .HasColumnName("product_id")
+            .HasColumnType("INT")
             .IsRequired();
 
         // Relaciones

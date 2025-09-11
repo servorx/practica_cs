@@ -16,27 +16,29 @@ namespace Infrastructure.Configurations
 
             builder.Property(b => b.Id)
                 .HasColumnName("id")
-                .ValueGeneratedOnAdd();
+                .HasColumnType("SERIAL")
+                .IsRequired();
 
             // Propiedades
             builder.Property(b => b.Description)
                 .HasColumnName("description")
+                .HasColumnType("VARCHAR")
                 .HasMaxLength(80);
 
             builder.Property(b => b.Detail)
-                .HasColumnName("detail");
-
-            builder.Property(b => b.AudienceId)
-                .HasColumnName("audience_id");
+                .HasColumnName("detail")
+                .HasColumnType("TEXT");
 
             // Relaciones
             builder.HasMany(b => b.AudienceBenefits)
                 .WithOne(ab => ab.Benefit)
-                .HasForeignKey(ab => ab.BenefitId);
+                .HasForeignKey(ab => ab.BenefitId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(b => b.MembershipBenefits)
                 .WithOne(mb => mb.Benefit)
-                .HasForeignKey(mb => mb.BenefitId);
+                .HasForeignKey(mb => mb.BenefitId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

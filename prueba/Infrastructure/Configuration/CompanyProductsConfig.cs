@@ -17,21 +17,20 @@ public class CompanyProductConfig: IEntityTypeConfiguration<CompanyProduct>
         // Columnas
         builder.Property(cp => cp.CompanyId)
             .HasColumnName("company_id")
-            .HasMaxLength(20)
-            .IsRequired();
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(20);
 
         builder.Property(cp => cp.ProductId)
             .HasColumnName("product_id")
-            .IsRequired();
+            .HasColumnType("INT");
 
         builder.Property(cp => cp.Price)
             .HasColumnName("price")
-            .HasColumnType("double")
-            .IsRequired();
-
+            .HasColumnType("double");
+        
         builder.Property(cp => cp.UnitMeasureId)
             .HasColumnName("unit_measure_id")
-            .IsRequired();
+            .HasColumnType("INT");
 
         // Relaciones
         builder.HasOne(cp => cp.Company)

@@ -17,8 +17,7 @@ public class MembershipPeriodConfiguration : IEntityTypeConfiguration<Membership
         builder.Property(mp => mp.Id)
             .HasColumnName("id")
             .HasColumnType("SERIAL")
-            .IsRequired()
-            .ValueGeneratedOnAdd();
+            .IsRequired();
 
         // Columnas
         builder.Property(mp => mp.MembershipId)
@@ -32,6 +31,8 @@ public class MembershipPeriodConfiguration : IEntityTypeConfiguration<Membership
         builder.Property(mp => mp.Name)
             .HasColumnName("name")
             .HasMaxLength(80);
+        builder.HasIndex(mp => mp.Name)
+            .IsUnique();
 
         builder.Property(mp => mp.Description)
             .HasColumnName("description")

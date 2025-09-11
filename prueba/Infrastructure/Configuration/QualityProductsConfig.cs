@@ -11,14 +11,9 @@ public class QualityProductConfig : IEntityTypeConfiguration<QualityProduct>
         builder.ToTable("quality_products");
 
         // Clave primaria compuesta
-        builder.HasKey(qp => new { qp.Id, qp.ProductId, qp.CustomerId, qp.PollId, qp.CompanyId });
+        builder.HasKey(qp => new {qp.ProductId, qp.CustomerId, qp.PollId, qp.CompanyId });
 
         // Columnas
-        builder.Property(qp => qp.Id)
-            .HasColumnName("id")
-            .HasColumnType("INT")
-            .ValueGeneratedOnAdd();
-
         builder.Property(qp => qp.ProductId)
             .HasColumnName("product_id")
             .HasColumnType("INT");

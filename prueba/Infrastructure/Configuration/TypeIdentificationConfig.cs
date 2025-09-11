@@ -15,8 +15,8 @@ namespace Infrastructure.Configurations
             builder.HasKey(ti => ti.Id);
             builder.Property(ti => ti.Id)
                 .HasColumnName("id")
-                .HasColumnType("INTEGER")
-                .ValueGeneratedOnAdd();
+                .HasColumnType("SERIAL")
+                .IsRequired();
 
             // Columnas
             builder.Property(ti => ti.Description)

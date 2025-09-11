@@ -16,13 +16,16 @@ namespace Infrastructure.Configurations
             builder.Property(sor => sor.Code)
                 .HasColumnName("code")
                 .HasColumnType("VARCHAR")
-                .HasMaxLength(6);
+                .HasMaxLength(6)
+                .IsRequired();
 
             // Columnas
             builder.Property(sor => sor.Name)
                 .HasColumnName("name")
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(60);
+            builder.HasIndex(sor => sor.Name)
+                .IsUnique();
 
             builder.Property(sor => sor.CountryId)
                 .HasColumnName("country_id")
@@ -33,6 +36,8 @@ namespace Infrastructure.Configurations
                 .HasColumnName("code_3166")
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(10);
+            builder.HasIndex(sor => sor.Code3166)
+                .IsUnique();
 
             builder.Property(sor => sor.SubdivisionCategoryId)
                 .HasColumnName("subdivision_category_id")

@@ -16,35 +16,40 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 
         builder.Property(c => c.Id)
             .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+            .HasColumnType("SERIAL")
+            .IsRequired();
 
         // Columnas
         builder.Property(c => c.Name)
             .HasColumnName("name")
-            .HasMaxLength(150)
-            .IsRequired();
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(80);
 
         builder.Property(c => c.CityId)
             .HasColumnName("city_id")
-            .IsRequired();
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(6);
 
         builder.Property(c => c.AudienceId)
             .HasColumnName("audience_id")
-            .IsRequired();
+            .HasColumnType("INT");
 
         builder.Property(c => c.Cellphone)
             .HasColumnName("cellphone")
+            .HasColumnType("VARCHAR")
             .HasMaxLength(20);
         builder.HasIndex(c => c.Cellphone).IsUnique();
 
         builder.Property(c => c.Email)
             .HasColumnName("email")
-            .HasMaxLength(150);
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(100);
         builder.HasIndex(c => c.Email).IsUnique();
 
         builder.Property(c => c.Address)
             .HasColumnName("address")
-            .HasMaxLength(200);
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(120);
 
         // Relaciones
         builder.HasOne(c => c.CityOrMunicipality)

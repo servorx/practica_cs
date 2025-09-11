@@ -21,12 +21,15 @@ namespace Infrastructure.Configurations
             // Columnas
             builder.Property(tp => tp.Description)
                 .HasColumnName("description")
+                .HasColumnType("VARCHAR")
                 .HasMaxLength(80);
+            builder.HasIndex(tp => tp.Description)
+                .IsUnique();
 
-            // Relaciones uno a uno
+            // Relación uno a uno con Product
             builder.HasOne(tp => tp.Product)
                 .WithOne(p => p.TypeProduct)
-                .HasForeignKey<Product>(tp => tp.TypeProductId);
+                .HasForeignKey<Product>(p => p.TypeProductId); 
         }
     }
 }

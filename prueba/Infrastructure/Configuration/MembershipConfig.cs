@@ -16,18 +16,19 @@ public class MembershipConfiguration : IEntityTypeConfiguration<Membership>
 
         builder.Property(m => m.Id)
             .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+            .HasColumnType("SERIAL")
+            .IsRequired();
 
         // Columnas
         builder.Property(m => m.Name)
             .HasColumnName("name")
-            .HasMaxLength(100)
-            .IsRequired();
+            .HasMaxLength(50);
+        builder.HasIndex(m => m.Name)
+            .IsUnique();
 
         builder.Property(m => m.Description)
             .HasColumnName("description")
-            .HasMaxLength(255)
-            .IsRequired(false);
+            .HasColumnType("TEXT");
 
         // Relaciones
         builder.HasMany(m => m.MembershipPeriods)

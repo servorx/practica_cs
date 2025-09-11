@@ -11,7 +11,7 @@ namespace Infrastructure.Configurations
             // Tabla
             builder.ToTable("unit_of_measure");
 
-            // Clave primaria compuesta
+            // Clave primaria
             builder.HasKey(uof => uof.Id);
             builder.Property(uof => uof.Id)
                 .HasColumnName("id")
@@ -21,7 +21,10 @@ namespace Infrastructure.Configurations
             // Columnas
             builder.Property(uof => uof.Description)
                 .HasColumnName("description")
+                .HasColumnType("VARCHAR")
                 .HasMaxLength(60);
+            builder.HasIndex(uof => uof.Description)
+                .IsUnique();
 
             // Relaciones
             builder.HasMany(u => u.CompanyProducts)

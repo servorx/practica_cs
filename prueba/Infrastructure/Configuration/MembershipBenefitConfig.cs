@@ -16,16 +16,23 @@ public class MembershipBenefitConfig : IEntityTypeConfiguration<MembershipBenefi
 
         builder.Property(mb => mb.Id)
             .HasColumnName("id")
+            .HasColumnType("INTEGER")
             .ValueGeneratedOnAdd();
 
         // Columnas
         builder.Property(mb => mb.MembershipPeriId)
             .HasColumnName("membership_period_id")
+            .HasColumnType("INTEGER")
             .IsRequired();
+        builder.HasIndex(mb => mb.MembershipPeriId)
+            .IsUnique();
 
         builder.Property(mb => mb.BenefitId)
             .HasColumnName("benefit_id")
+            .HasColumnType("INTEGER")
             .IsRequired();
+        builder.HasIndex(mb => mb.BenefitId)
+            .IsUnique();
 
         // Relaciones
         builder.HasOne(mb => mb.MembershipPeriod)

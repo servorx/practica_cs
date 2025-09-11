@@ -16,17 +16,18 @@ public class FavoriteConfig : IEntityTypeConfiguration<Favorite>
 
         builder.Property(f => f.Id)
             .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+            .HasColumnType("SERIAL")
+            .IsRequired();
 
         // Columnas
         builder.Property(f => f.CustomerId)
             .HasColumnName("customer_id")
-            .IsRequired();
+            .HasColumnType("iNTEGER");
 
         builder.Property(f => f.CompanyId)
             .HasColumnName("company_id")
-            .HasMaxLength(20)
-            .IsRequired();
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(20);
 
         // Relaciones
         builder.HasOne(f => f.Customer)

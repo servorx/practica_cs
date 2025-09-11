@@ -15,11 +15,15 @@ public class SubdivisionCategoryConfiguration : IEntityTypeConfiguration<Subdivi
         builder.HasKey(sc => sc.Id);
         builder.Property(sc => sc.Id)
             .HasColumnName("id")
-            .HasColumnType("SERIAL");
+            .HasColumnType("SERIAL")
+            .IsRequired();
 
         builder.Property(sc => sc.Description)
             .HasColumnName("description")
+            .HasColumnType("VARCHAR")
             .HasMaxLength(40);
+        builder.HasIndex(sc => sc.Description)        
+            .IsUnique();
 
         // Relaciones
         builder.HasMany(sc => sc.StateOrRegions)

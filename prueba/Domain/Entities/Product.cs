@@ -13,6 +13,6 @@ public class Product : BaseEntity<int>
     public virtual ICollection<DetailFavorite> DetailsFavorites { get; set; } = new HashSet<DetailFavorite>();
     public virtual ICollection<QualityProduct> QualityProducts { get; set; } = new HashSet<QualityProduct>();
     // relacion uno a uno con type_products
-    public virtual TypeIdentification TypeIdentification { get; set; } = default!;
+    public virtual TypeProduct TypeProduct { get; set; } = default!;
     private Product() { } // EF
 }

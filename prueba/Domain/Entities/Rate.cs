@@ -3,7 +3,6 @@ namespace Domain.Entities;
 
 public class Rate 
 {
-    public int? Id { get; set; } = default!;
     public int? CustomerId { get; set; } = default!;
     public int? CompanyId { get; set; } = default!;
     public int? PollId { get; set; } = default!;

@@ -17,20 +17,24 @@ namespace Infrastructure.Configurations
             // Columnas
             builder.Property(ab => ab.AudienceId)
                 .HasColumnName("audience_id")
+                .HasColumnType("INTEGER")
                 .IsRequired();
 
             builder.Property(ab => ab.BenefitId)
                 .HasColumnName("benefit_id")
+                .HasColumnType("INTEGER")
                 .IsRequired();
 
             // Relaciones
             builder.HasOne(ab => ab.Audience)
                 .WithMany(a => a.AudienceBenefits)
-                .HasForeignKey(ab => ab.AudienceId);
+                .HasForeignKey(ab => ab.AudienceId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(ab => ab.Benefit)
                 .WithMany(b => b.AudienceBenefits)
-                .HasForeignKey(ab => ab.BenefitId);
+                .HasForeignKey(ab => ab.BenefitId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

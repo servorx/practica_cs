@@ -15,22 +15,30 @@ public class CountryConfig : IEntityTypeConfiguration<Country>
         builder.HasKey(c => c.Isocode);
         builder.Property(c => c.Isocode)
             .HasColumnName("isocode")
+            .HasColumnType("VARCHAR")
             .HasMaxLength(10)
             .IsRequired();
 
         // Columnas
         builder.Property(c => c.Name)
             .HasColumnName("name")
-            .HasMaxLength(150)
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(50)
             .IsRequired();
+        builder.HasIndex(c => c.Name)
+            .IsUnique();
 
         builder.Property(c => c.AlsaIsoTwo)
             .HasColumnName("alsa_iso_two")
             .HasMaxLength(2);
+        builder.HasIndex(c => c.AlsaIsoTwo)
+            .IsUnique();
 
         builder.Property(c => c.AlsaIsoThree)
             .HasColumnName("alsa_iso_three")
             .HasMaxLength(3);
+        builder.HasIndex(c => c.AlsaIsoThree)
+            .IsUnique();
 
         // Relaciones
         builder.HasMany(c => c.StateOrRegions)
