@@ -5,7 +5,7 @@ namespace Domain.Entities;
 
 public class CompanyProduct
 {
-    public int? CompanyId { get; set; } = default!;
+    public string? CompanyId { get; set; } = default!;
     public int? ProductId { get; set; } = default!;
     public double? Price { get; set; } = default!;
     public int? UnitMeasureId { get; set; } = default!;

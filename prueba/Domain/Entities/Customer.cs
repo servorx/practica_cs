@@ -6,7 +6,7 @@ public class Customer : BaseEntity<int>
 {
     public string? Name { get; set; } = default!;
     public string? CityId { get; set; } = default!;
-    public string? AudienceId { get; set; } = default!;
+    public int? AudienceId { get; set; } = default!;
     public string? Cellphone { get; set; } = default!;
     public string? Email { get; set; } = default!;
     public string? Address { get; set; } = default!;

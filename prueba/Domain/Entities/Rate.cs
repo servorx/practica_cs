@@ -4,7 +4,7 @@ namespace Domain.Entities;
 public class Rate 
 {
     public int? CustomerId { get; set; } = default!;
-    public int? CompanyId { get; set; } = default!;
+    public string? CompanyId { get; set; } = default!;
     public int? PollId { get; set; } = default!;
     public DateTime? DateRating { get; set; } = default!;
     public double? Rating { get; set; } = default!;

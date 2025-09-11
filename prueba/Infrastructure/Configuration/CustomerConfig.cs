@@ -32,7 +32,7 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 
         builder.Property(c => c.AudienceId)
             .HasColumnName("audience_id")
-            .HasColumnType("INT");
+            .HasColumnType("INTEGER");
 
         builder.Property(c => c.Cellphone)
             .HasColumnName("cellphone")

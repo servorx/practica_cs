@@ -15,7 +15,8 @@ public class CompanyConfig : IEntityTypeConfiguration<Company>
         builder.HasKey(c => c.Id);
         builder.Property(c => c.Id)
             .HasColumnName("id")
-            .HasColumnType("SERIAL")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(20)
             .IsRequired();
 
         // Propiedades

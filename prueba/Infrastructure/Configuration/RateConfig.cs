@@ -21,7 +21,7 @@ public class RateConfiguration : IEntityTypeConfiguration<Rate>
 
         builder.Property(r => r.CompanyId)
             .HasColumnName("company_id")
-            .HasColumnType("INT");
+            .HasColumnType("VARCHAR");
 
         builder.Property(r => r.PollId)
             .HasColumnName("poll_id")

@@ -2,8 +2,9 @@ using System.Net.Security;
 
 namespace Domain.Entities;
 
-public class Company : BaseEntity<int>
+public class Company 
 {
+    public string? Id { get; set; } = default!;
     public int? TypeId { get; set; } = default!;
     public string? Name { get; set; } = default!;
     public int? CategoryId { get; set; } = default!;
